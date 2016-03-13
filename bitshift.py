@@ -10,6 +10,9 @@ dataBit = 25
 LATCH = 24
 CLK = 23
 
+def intToBit(n):
+    return [int(digit) for digit in bin(n)[2:]]
+
 def pulseCLK():
     GPIO.output(CLK, HIGH)
     GPIO.output(CLK, LOW)

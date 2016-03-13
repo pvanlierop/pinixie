@@ -1,4 +1,6 @@
-from shiftpi import HIGH, LOW, ALL, digitalWrite, delay
+from shiftpi import HIGH, LOW, ALL, digitalWrite, delay, startupMode
+
+startupMode(LOW,True)
 
 digitalWrite(0, HIGH)
 delay(1000)
