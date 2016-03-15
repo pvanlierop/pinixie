@@ -7,6 +7,9 @@ GPIO.setwarnings(False)
 HIGH = 1
 LOW = 0
 
+# Number of Nixie Tubes
+NIXIECOUNT = 6
+
 # Define pins
 dataBit = 25
 LATCH = 24
@@ -33,8 +36,32 @@ def serLatch():
     GPIO.output(LATCH, LOW)
     return
 
-# Takes a 24 bit or less variable and outputs the appropriate nixie digits
-def nixiePush(bits):
+def bitShift(bits):
+    #loop through the bits and shift
+    for bit in bits:
+        if bit:
+            GPIO.output(dataBit, HIGH)
+        else:
+            GPIO.output(dataBit, LOW)
+        pulseCLK()
+    return
+
+# Takes a list of appropriate nixie individual values and pushes them to shift register
+def nixiePush(digits):
+    for tube in range(0, NIXIECOUNT):
+        bitShift(intToBit(digits[tube]))
+
+    #now you've shifted the bits, send em!
+    serLatch()
+    return
+
+    # Clear out shift registers
+def shiftBlank():
+    for x in range(0, NIXIECOUNT*4):
+        GPIO.output(dataBit, LOW)
+        pulseCLK()
+    serLatch()
+    return
 
 if __name__ == '__main__':
 
@@ -46,10 +73,7 @@ if __name__ == '__main__':
     GPIO.output(CLK, LOW)
 
     # lets clear the register!
-    for x in range(0,8):
-        GPIO.output(dataBit, LOW)
-        pulseCLK()
-    serLatch()
+    shiftBlank()
 
     #Lets try a 1101
     GPIO.output(dataBit, HIGH)
@@ -62,10 +86,14 @@ if __name__ == '__main__':
     pulseCLK()
     serLatch()
 
-    dt = list(time.localtime())
-    hourDigit1 = dt[3]/10
-    hourDigit2 = dt[3]%10
-    minDigit1 = dt[4]/10
-    minDigit2 = dt[4]%10
-    secDigit1 = dt[5]/10
-    secDigit2 = dt[5]%10
+    try:
+        while True:
+            # get the time and put each digit in a list ready for Nixieing!
+            dt = list(time.localtime())
+            digitList = [dt[3]/10, dt[3]%10, dt[4]/12, dt[4]%10, dt[5]/10, dt[5]%10 ]
+            nixiePush(digitList)
+            time.sleep(1)
+
+    except KeyboardInterrupt:
+        shiftBlank()
+        pass
