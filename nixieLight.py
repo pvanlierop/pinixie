@@ -41,3 +41,10 @@ GPIO.output(PIN1, HIGH)
 GPIO.output(PIN2, HIGH)
 GPIO.output(PIN3, LOW)
 GPIO.output(PIN4, LOW)
+
+# display 4
+time.sleep(1)
+GPIO.output(PIN1, LOW)
+GPIO.output(PIN2, LOW)
+GPIO.output(PIN3, HIGH)
+GPIO.output(PIN4, LOW)
