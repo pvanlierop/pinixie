@@ -54,7 +54,7 @@ def display_digit(which_digit, digit_value):
 
 def display_time():
     current_time = list(time.strftime("%I%M"))
-    for i in range(0, 3)
+    for i in range(0, 3):
         display_digit(i, current_time[i])
 
 if __name__ == '__main__':
