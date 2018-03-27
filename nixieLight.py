@@ -28,6 +28,7 @@ NIX2 = [DIG2_1, DIG2_2, DIG2_3, DIG2_4]
 NIX3 = [DIG3_1, DIG3_2, DIG3_3, DIG3_4]
 NIX4 = [DIG4_1, DIG4_2, DIG4_3, DIG4_4]
 ALL_NIXIES = [NIX1, NIX2, NIX3, NIX4]
+VOLT_170 = 4
 
 #setup binary output for nixie to display for each digit
 OUT0 = [0,0,0,0]
@@ -75,10 +76,13 @@ if __name__ == '__main__':
     GPIO.setup(NIX2, GPIO.OUT)
     GPIO.setup(NIX3, GPIO.OUT)
     GPIO.setup(NIX4, GPIO.OUT)
-
+    GPIO.setup(VOLT_170, GPIO.OUT, initial=GPIO.LOW)
 
 
     try:
+        # Turn on power to the nixie tubes
+        GPIO.output(VOLT_170, HIGH)
+        # Run through the digits on the tubes
         cycle_nixies()
         second_count = 0
         while True:
@@ -90,5 +94,6 @@ if __name__ == '__main__':
             time.sleep(1)
 
     except KeyboardInterrupt:
+        GPIO.output(VOLT_170, LOW)
         GPIO.cleanup()
         pass
