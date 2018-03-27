@@ -60,7 +60,7 @@ def blank_zero():
 def display_time():
     current_time = list(time.strftime("%I%M"))
     check_for_zero = time.localtime()
-    if check_for_zero.tm_hour < 10:
+    if (check_for_zero.tm_hour < 10) or (12 < check_for_zero.tm_hour < 22):
         # blank the leading zero on the output
         blank_zero()
         for i in range(1, 4):
