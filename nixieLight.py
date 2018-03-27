@@ -41,10 +41,6 @@ OUT8 = [0,0,0,1]
 OUT9 = [1,0,0,1]
 ALL_NUMBERS = [OUT0, OUT1, OUT2, OUT3, OUT4, OUT5, OUT6, OUT7, OUT8, OUT9]
 
-GPIO.setup(NIX1, GPIO.OUT)
-GPIO.setup(NIX2, GPIO.OUT)
-GPIO.setup(NIX3, GPIO.OUT)
-GPIO.setup(NIX4, GPIO.OUT)
 
 def cycle_nixies():
     for i in ALL_NIXIES:
@@ -56,10 +52,31 @@ def display_digit(which_digit, digit_value):
     if (0 <= which_digit <= 3) and (0 <= digit_value <= 9):
         GPIO.output(ALL_NIXIES[which_digit], ALL_NUMBERS[digit_value])
 
-cycle_nixies()
-display_digit(0, 1)
-display_digit(1, 2)
-display_digit(2, 3)
-display_digit(3, 4)
-time.sleep(10)
-GPIO.cleanup()
+def display_time():
+    current_time = list(time.strftime("%I%M"))
+    for i in range(0, 3)
+        display_digit(i, current_time[i])
+
+if __name__ == '__main__':
+    # initialize outputs
+    GPIO.setup(NIX1, GPIO.OUT)
+    GPIO.setup(NIX2, GPIO.OUT)
+    GPIO.setup(NIX3, GPIO.OUT)
+    GPIO.setup(NIX4, GPIO.OUT)
+
+
+
+    try:
+        cycle_nixies()
+        second_count = 0
+        while True:
+            display_time()
+            second_count++
+            if second_count == 1800:
+                cycle_nixies()
+                second_count = 0
+            time.sleep(1)
+
+    except KeyboardInterrupt:
+        GPIO.cleanup()
+        pass
