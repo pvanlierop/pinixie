@@ -71,7 +71,7 @@ if __name__ == '__main__':
         second_count = 0
         while True:
             display_time()
-            second_count++
+            second_count += 1
             if second_count == 1800:
                 cycle_nixies()
                 second_count = 0
