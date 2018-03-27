@@ -41,10 +41,10 @@ OUT8 = [0,0,0,1]
 OUT9 = [1,0,0,1]
 ALL_NUMBERS = [OUT0, OUT1, OUT2, OUT3, OUT4, OUT5, OUT6, OUT7, OUT8, OUT9]
 
-GPIO.setup(nix1, GPIO.OUT)
-GPIO.setup(nix2, GPIO.OUT)
-GPIO.setup(nix3, GPIO.OUT)
-GPIO.setup(nix4, GPIO.OUT)
+GPIO.setup(NIX1, GPIO.OUT)
+GPIO.setup(NIX2, GPIO.OUT)
+GPIO.setup(NIX3, GPIO.OUT)
+GPIO.setup(NIX4, GPIO.OUT)
 
 def cycle_nixies():
     for i in ALL_NIXIES:
