@@ -65,7 +65,7 @@ def display_time():
         blank_zero()
         for i in range(1, 4):
             display_digit(i, int(current_time[i]))
-    else
+    else:
         for i in range(0, 4):
             display_digit(i, int(current_time[i]))
 
