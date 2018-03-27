@@ -49,12 +49,11 @@ def cycle_nixies():
             time.sleep(.2)
 
 def display_digit(which_digit, digit_value):
-    if (0 <= which_digit <= 3) and (0 <= digit_value <= 9):
-        GPIO.output(ALL_NIXIES[which_digit], ALL_NUMBERS[digit_value])
+    GPIO.output(ALL_NIXIES[which_digit], ALL_NUMBERS[digit_value])
 
 def display_time():
     current_time = list(time.strftime("%I%M"))
-    for i in range(0, 3):
+    for i in range(0, 4):
         display_digit(i, int(current_time[i]))
 
 if __name__ == '__main__':
