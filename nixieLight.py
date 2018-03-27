@@ -52,6 +52,14 @@ def cycle_nixies():
             GPIO.output(i, j)
             time.sleep(.2)
 
-cycle_nixies()
+def display_digit(which_digit, digit_value):
+    if (0 <= which_digit <= 3) and (0 <= digit_value <= 9):
+        GPIO.output(ALL_NIXIES[which_digit], ALL_NUMBERS[digit_value])
 
+cycle_nixies()
+display_digit(0, 1)
+display_digit(1, 2)
+display_digit(2, 3)
+display_digit(3, 4)
+time.sleep(10)
 GPIO.cleanup()
