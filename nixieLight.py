@@ -40,6 +40,7 @@ OUT6 = [0,1,1,0]
 OUT7 = [1,1,1,0]
 OUT8 = [0,0,0,1]
 OUT9 = [1,0,0,1]
+BLANK = [0,1,0,1]
 ALL_NUMBERS = [OUT0, OUT1, OUT2, OUT3, OUT4, OUT5, OUT6, OUT7, OUT8, OUT9]
 
 
@@ -52,10 +53,21 @@ def cycle_nixies():
 def display_digit(which_digit, digit_value):
     GPIO.output(ALL_NIXIES[which_digit], ALL_NUMBERS[digit_value])
 
+# blank the first nixie tube instead of a leading zero
+def blank_zero():
+    GPIO.output(NIX1, BLANK)
+
 def display_time():
     current_time = list(time.strftime("%I%M"))
-    for i in range(0, 4):
-        display_digit(i, int(current_time[i]))
+    check_for_zero = time.localtime()
+    if check_for_zero.tm_hour < 10:
+        # blank the leading zero on the output
+        blank_zero()
+        for i in range(1, 4):
+            display_digit(i, int(current_time[i]))
+    else
+        for i in range(0, 4):
+            display_digit(i, int(current_time[i]))
 
 if __name__ == '__main__':
     # initialize outputs
