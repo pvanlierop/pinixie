@@ -1,0 +1,23 @@
+Design Specifics for the case
+
+Allow spacing for each nixie tube of 1.4"
+
+Hole size for tube .8"
+
+Neon tube are .25in in diameter
+
+Safe height from bottom of PCB to bottom of Pi Zero is .6" with female header.
+
+HVPS requires .82" of clearance for whichever side we mount it on.
+
+Cool red hex standoffs are 1.574" long
+Black standoffs are .98"
+All with M3 screws .118" wide .392 length of threads
+
+Tube height of Nixies approx 2.43"
+Bottom of tube up from mount approx .437" with an additional buffer of about .269" that could also be covered without hiding any cool stuff
+
+Red Acrylic .138" 12x18" sheet
+Black Acrylic .2275" 10x10" sheet
+
+Power mount .422" diameter Hole
