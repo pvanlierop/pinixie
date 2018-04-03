@@ -21,3 +21,5 @@ Red Acrylic .138" 12x18" sheet
 Black Acrylic .2275" 10x10" sheet
 
 Power mount .422" diameter Hole
+
+So design idea use the black standoffs for mounting the PCB with nixies on top and raspberry pi and hvps mounted on bottom of PCB with adequate clearance. Red acrylic will then be 1.574" tall with red standoffs external.
